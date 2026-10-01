@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#164b3c" />
+    <meta
+      name="description"
+      content="Zensation Makeup Studio — ลง Second Skin Barrier Gel ก่อนสนุกกับเกมแต่งหน้า"
+    />
+    <title>เกมแต่งหน้า — Zensation Makeup Studio</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23164b3c'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia' font-size='42' fill='%23f38aad'%3EZ%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20261002-premium-2" />
+    <link rel="stylesheet" href="makeup.css?v=20261002-premium-2" />
+    <script defer src="makeup.js"></script>
+    <script defer src="ui.js?v=20261002-premium-2"></script>
+  </head>
+  <body class="makeup-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Zensation หน้าสินค้า"
+        ><span class="brand-mark">Z<span>e</span>n</span
+        ><span class="brand-name">ZENSATION</span></a
+      ><button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        MENU<span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="primary-nav" aria-label="เมนูหลัก">
+        <a href="index.html">PRODUCT</a
+        ><a href="makeup.html" aria-current="page">MAKEUP STUDIO</a
+        ><a href="redeem.html">ENTER CODE</a>
+      </nav>
+    </header>
+    <main id="main-content" class="studio">
+      <div class="studio-heading">
+        <span class="kicker">THE ART OF BEING YOU</span>
+        <h1>Your beauty <em>studio.</em></h1>
+        <p>ลงเจลก่อน แล้วสนุกกับการแต่งหน้าในสไตล์ของคุณ</p>
+      </div>
+      <ol class="game-steps" aria-label="ขั้นตอนการเล่น">
+        <li id="step-prep" aria-current="step"><b>01</b> PREP</li>
+        <li id="step-makeup"><b>02</b> MAKEUP</li>
+        <li id="step-save"><b>03</b> SAVE</li>
+      </ol>
+      <div class="game-shell">
+        <aside class="studio-sidebar">
+          <div class="side-label">01 / PREP YOUR SKIN</div>
+          <h2>Start with<br /><em>confidence.</em></h2>
+          <p>
+            เตรียมผิวด้วย Second Skin แล้วเลือกสีและสไตล์ที่ชอบ
+            บันทึกลุคของคุณได้เมื่อแต่งเสร็จ
+          </p>
+          <button class="product-button" id="apply-gel" type="button">
+            <img
+              src="assets/second-skin-tube.png"
+              alt="Second Skin Barrier Gel"
+            /><span
+              ><small>STEP 01 · SKIN PREP</small><strong>APPLY ZENSATION</strong
+              ><small>เริ่มเตรียมผิว</small></span
+            >
+          </button>
+          <p
+            id="game-status"
+            class="game-status"
+            role="status"
+            aria-live="polite"
+          >
+            แตะ “APPLY ZENSATION” เพื่อเริ่มเล่น ✦
+          </p>
+          <button class="save-look-button" id="save-look" type="button">
+            SAVE YOUR LOOK</button
+          ><button class="reset-button" id="reset-look" type="button">
+            START OVER
+          </button>
+        </aside>
+        <div class="portrait-area">
+          <div class="portrait-top">
+            <span>ZENSATION / YOUR LOOK</span
+            ><span id="stage-label">BARE FACE / 00</span>
+          </div>
+          <div class="portrait-frame">
+            <svg
+              id="face-art"
+              viewBox="300 0 440 559"
+              role="img"
+              aria-label="ตัวละครผมหางม้า เสื้อคาร์ดิแกนสีครีม สำหรับแต่งหน้า"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <filter
+                  id="brow-feather"
+                  x="-15%"
+                  y="-60%"
+                  width="130%"
+                  height="220%"
+                >
+                  <feGaussianBlur stdDeviation=".8" />
+                </filter>
+                <filter
+                  id="lip-feather"
+                  x="-10%"
+                  y="-30%"
+                  width="120%"
+                  height="160%"
+                >
+                  <feGaussianBlur stdDeviation=".65" />
+                </filter>
+                <filter id="makeup-soft">
+                  <feGaussianBlur stdDeviation="5" />
+                </filter>
+                <radialGradient id="face-fade">
+                  <stop offset="80%" stop-color="white" />
+                  <stop offset="100%" stop-color="black" />
+                </radialGradient>
+                <mask id="expression-mask">
+                  <ellipse
+                    cx="513"
+                    cy="226"
+                    rx="86"
+                    ry="88"
+                    fill="url(#face-fade)"
+                  />
+                </mask>
+                <clipPath id="outfit-clip">
+                  <path
+                    d="M420 351 Q353 352 322 435 L300 559 H730 L693 435 Q675 380 600 351 L592 430 L514 479 L433 432Z"
+                  />
+                </clipPath>
+                <linearGradient id="gold-metal" x2="1" y2="1">
+                  <stop stop-color="#f9e4ad" />
+                  <stop offset=".5" stop-color="#bd9149" />
+                  <stop offset="1" stop-color="#f3d48d" />
+                </linearGradient>
+              </defs>
+              <g id="character-body">
+                <image
+                  id="character-base"
+                  href="assets/character-neutral.png"
+                  x="0"
+                  y="0"
+                  width="1024"
+                  height="559"
+                  preserveAspectRatio="none"
+                />
+                <image
+                  id="outfit-image"
+                  href="assets/character-neutral.png"
+                  x="0"
+                  y="0"
+                  width="1024"
+                  height="559"
+                  preserveAspectRatio="none"
+                  clip-path="url(#outfit-clip)"
+                  opacity="0"
+                />
+                <image
+                  id="happy-face"
+                  mask="url(#expression-mask)"
+                  href="assets/character-happy.png"
+                  x="0"
+                  y="0"
+                  width="1024"
+                  height="559"
+                  preserveAspectRatio="none"
+                  opacity="0"
+                />
+                <g
+                  id="blush-layer"
+                  opacity="0"
+                  style="mix-blend-mode: multiply"
+                >
+                  <ellipse
+                    cx="459"
+                    cy="219"
+                    rx="21"
+                    ry="12"
+                    fill="#e7829d"
+                    filter="url(#makeup-soft)"
+                  />
+                  <ellipse
+                    cx="565"
+                    cy="219"
+                    rx="21"
+                    ry="12"
+                    fill="#e7829d"
+                    filter="url(#makeup-soft)"
+                  />
+                </g>
+                <g
+                  id="shadow-layer"
+                  opacity="0"
+                  style="mix-blend-mode: multiply"
+                >
+                  <ellipse
+                    cx="469"
+                    cy="180"
+                    rx="19"
+                    ry="5"
+                    fill="#c59ba9"
+                    filter="url(#makeup-soft)"
+                  />
+                  <ellipse
+                    cx="550"
+                    cy="180"
+                    rx="19"
+                    ry="5"
+                    fill="#c59ba9"
+                    filter="url(#makeup-soft)"
+                  />
+                </g>
+                <g
+                  id="brows-layer"
+                  fill="#71514e"
+                  stroke="none"
+                  opacity="0"
+                  filter="url(#brow-feather)"
+                  style="mix-blend-mode: multiply"
+                >
+                  <path
+                    id="left-brow"
+                    d="M441 168 C448 158 458 155 468 157 C478 158 485 161 493 167 C483 165 475 163 466 163 C456 162 448 164 441 168Z"
+                  />
+                  <path
+                    id="right-brow"
+                    d="M529 168 C538 159 547 158 556 160 L568 167 C554 163 542 164 529 168Z"
+                  />
+                </g>
+                <path
+                  id="lip-layer"
+                  filter="url(#lip-feather)"
+                  d="M488 260 Q501 253 510 258 Q522 254 537 260 Q524 263 511 263 Q499 263 488 260Z M490 266 Q511 270 534 265 Q514 281 490 266Z"
+                  fill="#bd7778"
+                  opacity="0"
+                  style="mix-blend-mode: multiply"
+                />
+                <path
+                  id="happy-lip-layer"
+                  filter="url(#lip-feather)"
+                  d="M481 252 Q499 244 512 251 Q527 245 543 251 L536 255 Q512 259 488 255Z M488 261 Q512 270 537 260 Q514 286 488 261Z"
+                  fill="#bd7778"
+                  opacity="0"
+                  style="mix-blend-mode: multiply"
+                />
+                <g id="blemishes" fill="#bb655e" opacity=".76">
+                  <circle cx="450" cy="216" r="3" />
+                  <circle cx="463" cy="236" r="2.5" />
+                  <circle cx="568" cy="214" r="3" />
+                  <circle cx="556" cy="236" r="2.5" />
+                  <circle cx="480" cy="146" r="2" />
+                  <circle cx="526" cy="289" r="2" />
+                </g>
+                <g id="earrings-layer"></g>
+                <g id="clips-layer"></g>
+              </g>
+            </svg>
+            <div id="gel-flash" aria-hidden="true">✦</div>
+          </div>
+          <div class="portrait-bottom">
+            <span>BEFORE THE LOOK, LOVE THE SKIN.</span><span>♥</span>
+          </div>
+        </div>
+        <aside class="makeup-tray" id="makeup-tray" aria-disabled="true">
+          <div class="tray-heading">
+            <span>02 / CREATE YOUR LOOK</span><strong>BEAUTY PALETTE</strong>
+          </div>
+          <div class="style-tabs" role="tablist" aria-label="หมวดแต่งตัว">
+            <button
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="makeup-panel"
+              id="makeup-tab"
+              data-tab="makeup"
+            >
+              MAKEUP</button
+            ><button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="style-panel"
+              id="style-tab"
+              data-tab="style"
+            >
+              STYLE
+            </button>
+          </div>
+          <div class="tray-locked" id="tray-locked">
+            ลงเจลก่อน แล้วเลือกเมคอัพได้เลย
+          </div>
+          <div id="makeup-panel" role="tabpanel" aria-labelledby="makeup-tab">
+            <section class="makeup-group">
+              <h3>EYEBROWS <span>คิ้ว</span></h3>
+              <div class="swatches">
+                <button
+                  type="button"
+                  data-part="brows"
+                  data-value="soft"
+                  style="--swatch: #71514e"
+                  aria-label="คิ้วธรรมชาติ"
+                >
+                  <i></i>Soft</button
+                ><button
+                  type="button"
+                  data-part="brows"
+                  data-value="defined"
+                  style="--swatch: #3e2b33"
+                  aria-label="คิ้วคมชัด"
+                >
+                  <i></i>Defined</button
+                ><button
+                  type="button"
+                  data-part="brows"
+                  data-value="light"
+                  style="--swatch: #a78371"
+                  aria-label="คิ้วสีน้ำตาลอ่อน"
+                >
+                  <i></i>Light
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>BLUSH <span>บลัชออน</span></h3>
+              <div class="swatches">
+                <button
+                  type="button"
+                  data-part="blush"
+                  data-value="pink"
+                  style="--swatch: #e7829d"
+                  aria-label="บลัชสีชมพู"
+                >
+                  <i></i>Pink</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="peach"
+                  style="--swatch: #ed9c82"
+                  aria-label="บลัชสีพีช"
+                >
+                  <i></i>Peach</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="rose"
+                  style="--swatch: #c76e86"
+                  aria-label="บลัชสีโรส"
+                >
+                  <i></i>Rose</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="none"
+                  style="--swatch: #fff"
+                  aria-label="ไม่ลงบลัช"
+                >
+                  <i></i>None</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="apricot"
+                  style="--swatch: #e9a369"
+                  aria-label="blush Apricot"
+                >
+                  <i></i>Apricot</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="mauve"
+                  style="--swatch: #b883a0"
+                  aria-label="blush Mauve"
+                >
+                  <i></i>Mauve</button
+                ><button
+                  type="button"
+                  data-part="blush"
+                  data-value="berry"
+                  style="--swatch: #ac5675"
+                  aria-label="blush Berry"
+                >
+                  <i></i>Berry
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>EYESHADOW <span>อายแชโดว์</span></h3>
+              <div class="swatches">
+                <button
+                  type="button"
+                  data-part="shadow"
+                  data-value="rose"
+                  style="--swatch: #c59ba9"
+                  aria-label="อายแชโดว์สีโรส"
+                >
+                  <i></i>Rose</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="peach"
+                  style="--swatch: #e6ae8a"
+                  aria-label="อายแชโดว์สีพีช"
+                >
+                  <i></i>Peach</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="mauve"
+                  style="--swatch: #9d86aa"
+                  aria-label="อายแชโดว์สีม่วงหม่น"
+                >
+                  <i></i>Mauve</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="none"
+                  style="--swatch: #fff"
+                  aria-label="ไม่ลงอายแชโดว์"
+                >
+                  <i></i>None</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="cocoa"
+                  style="--swatch: #9b7763"
+                  aria-label="shadow Cocoa"
+                >
+                  <i></i>Cocoa</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="champagne"
+                  style="--swatch: #d7bb8f"
+                  aria-label="shadow Gold"
+                >
+                  <i></i>Gold</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="sage"
+                  style="--swatch: #93aa8d"
+                  aria-label="shadow Sage"
+                >
+                  <i></i>Sage</button
+                ><button
+                  type="button"
+                  data-part="shadow"
+                  data-value="blue"
+                  style="--swatch: #8ca5c8"
+                  aria-label="shadow Blue"
+                >
+                  <i></i>Blue
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>LIP COLOR <span>สีปาก</span></h3>
+              <div class="swatches">
+                <button
+                  type="button"
+                  data-part="lip"
+                  data-value="pink"
+                  style="--swatch: #df7698"
+                  aria-label="ลิปสีชมพู"
+                >
+                  <i></i>Pink</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="coral"
+                  style="--swatch: #dc8374"
+                  aria-label="ลิปสีคอรัล"
+                >
+                  <i></i>Coral</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="berry"
+                  style="--swatch: #a95270"
+                  aria-label="ลิปสีเบอร์รี"
+                >
+                  <i></i>Berry</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="nude"
+                  style="--swatch: #bd7778"
+                  aria-label="ลิปสีนู้ด"
+                >
+                  <i></i>Nude</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="red"
+                  style="--swatch: #bf4356"
+                  aria-label="lip Red"
+                >
+                  <i></i>Red</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="rose"
+                  style="--swatch: #ba657a"
+                  aria-label="lip Rose"
+                >
+                  <i></i>Rose</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="caramel"
+                  style="--swatch: #b47f65"
+                  aria-label="lip Caramel"
+                >
+                  <i></i>Caramel</button
+                ><button
+                  type="button"
+                  data-part="lip"
+                  data-value="plum"
+                  style="--swatch: #884d77"
+                  aria-label="lip Plum"
+                >
+                  <i></i>Plum
+                </button>
+              </div>
+            </section>
+          </div>
+          <div
+            id="style-panel"
+            role="tabpanel"
+            aria-labelledby="style-tab"
+            hidden
+          >
+            <section class="makeup-group">
+              <h3>HAIR <span>ทรงผม</span></h3>
+              <div class="style-choices">
+                <button
+                  type="button"
+                  data-part="hair"
+                  data-value="original"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">〰</span>Ponytail</button
+                ><button
+                  type="button"
+                  data-part="hair"
+                  data-value="bob"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">◡</span>Soft Bob</button
+                ><button
+                  type="button"
+                  data-part="hair"
+                  data-value="waves"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">≈</span>Loose Waves
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>HAIR CLIPS <span>กิ๊บติดผม</span></h3>
+              <div class="style-choices">
+                <button
+                  type="button"
+                  data-part="clip"
+                  data-value="none"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">—</span>None</button
+                ><button
+                  type="button"
+                  data-part="clip"
+                  data-value="pearls"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">●</span>Pearls</button
+                ><button
+                  type="button"
+                  data-part="clip"
+                  data-value="star"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">✦</span>Star</button
+                ><button
+                  type="button"
+                  data-part="clip"
+                  data-value="bow"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">⋈</span>Pink Bow
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>EARRINGS <span>ต่างหู</span></h3>
+              <div class="style-choices">
+                <button
+                  type="button"
+                  data-part="earrings"
+                  data-value="none"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">—</span>None</button
+                ><button
+                  type="button"
+                  data-part="earrings"
+                  data-value="pearl"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">●</span>Pearl</button
+                ><button
+                  type="button"
+                  data-part="earrings"
+                  data-value="hoops"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">○</span>Gold Hoops</button
+                ><button
+                  type="button"
+                  data-part="earrings"
+                  data-value="stars"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">✧</span>Star Drop
+                </button>
+              </div>
+            </section>
+            <section class="makeup-group">
+              <h3>OUTFIT <span>ชุด</span></h3>
+              <div class="style-choices">
+                <button
+                  type="button"
+                  data-part="outfit"
+                  data-value="original"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">♧</span>Cozy Knit</button
+                ><button
+                  type="button"
+                  data-part="outfit"
+                  data-value="blazer"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">◇</span>Ivory Tweed</button
+                ><button
+                  type="button"
+                  data-part="outfit"
+                  data-value="satin"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">♡</span>Pink Satin
+                </button>
+              </div>
+            </section>
+          </div>
+        </aside>
+      </div>
+      <p class="game-disclaimer">
+        สีผิวและเมคอัพในเกมเป็นภาพประกอบ ไม่แสดงผลลัพธ์จากการใช้ผลิตภัณฑ์จริง
+      </p>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <div class="footer-brand">ZENSATION</div>
+        <p>Confidence. No Compromises.</p>
+      </div>
+      <nav aria-label="ลิงก์ส่วนท้าย">
+        <a href="index.html#product">PRODUCT</a
+        ><a href="makeup.html">MAKEUP STUDIO</a><a href="index.html#faq">FAQ</a
+        ><a href="activity.html">ACTIVITY INFO</a
+        ><a href="activity.html#your-data">YOUR DATA</a
+        ><a href="index.html#shop">FIND US</a>
+      </nav>
+      <small>© 2026 ZENSATION · CONFIDENCE. NO COMPROMISES.</small>
+    </footer>
+  </body>
+</html>

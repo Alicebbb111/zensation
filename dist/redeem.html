@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#164b3c" />
+    <meta
+      name="description"
+      content="ร่วมสนุกกับ Zensation กรอกรหัสจากบัตรขูดเพื่อลุ้นรับ Second Skin Barrier Gel"
+    />
+    <title>Join the Experience — Zensation</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23164b3c'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia' font-size='42' fill='%23f38aad'%3EZ%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20261002-premium-2" />
+    <script defer src="config.js?v=20261002-premium-2"></script>
+    <script defer src="script.js?v=20261002-premium-2"></script>
+    <script defer src="ui.js?v=20261002-premium-2"></script>
+  </head>
+  <body class="redeem-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Zensation หน้าสินค้า"
+        ><span class="brand-mark">Z<span>e</span>n</span
+        ><span class="brand-name">ZENSATION</span></a
+      >
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        MENU<span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="primary-nav" aria-label="เมนูหลัก">
+        <a href="index.html">PRODUCT</a><a href="makeup.html">MAKEUP STUDIO</a
+        ><a href="redeem.html" aria-current="page">ENTER CODE</a>
+      </nav>
+    </header>
+    <main id="main-content">
+      <section class="redeem" id="redeem" aria-labelledby="redeem-title">
+        <div class="redeem-intro">
+          <span class="kicker">THE ZENSATION EXPERIENCE</span>
+          <h1 id="redeem-title">Your entry.<br /><em>Your moment.</em></h1>
+          <p>
+            กรอกรหัส Confidence No Compromises
+            พร้อมข้อมูลของคุณเพื่อลงทะเบียนร่วมกิจกรรม
+            ทีมงานจะสุ่มรายชื่อภายหลัง และติดต่อผู้โชคดีทางโทรศัพท์
+          </p>
+          <div class="ticket-preview" aria-hidden="true">
+            <div class="ticket-top">ZENSATION <span>✦</span> SCRATCH CARD</div>
+            <div class="ticket-foil">CONFIDENCE<br />NO COMPROMISES</div>
+            <div class="ticket-bottom">
+              REVEAL YOUR CODE · REVEAL YOUR CONFIDENCE
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="form-card-header">
+            <span class="kicker">A MOMENT FOR YOU</span>
+            <h2>Join the experience.</h2>
+            <p>
+              กรอกข้อมูลเพื่อลงทะเบียนร่วมกิจกรรม<br /><span
+                >ช่องที่มี * จำเป็นต้องกรอก</span
+              >
+            </p>
+          </div>
+          <form id="redeem-form" novalidate>
+            <label class="field full"
+              ><span>รหัสจากบัตรขูด *</span
+              ><input
+                id="scratch-code"
+                name="code"
+                type="text"
+                placeholder="Confidence No Compromises"
+                aria-describedby="code-help"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="100"
+                required
+              /><small id="code-help"
+                >ใช้ตัวเล็กหรือใหญ่ก็ได้ จะเว้นวรรคหรือไม่ก็ได้</small
+              ></label
+            >
+            <div class="field-grid">
+              <label class="field"
+                ><span>ชื่อ *</span
+                ><input
+                  name="first_name"
+                  type="text"
+                  autocomplete="given-name"
+                  maxlength="80"
+                  required /></label
+              ><label class="field"
+                ><span>นามสกุล *</span
+                ><input
+                  name="last_name"
+                  type="text"
+                  autocomplete="family-name"
+                  maxlength="80"
+                  required /></label
+              ><label class="field"
+                ><span>เบอร์โทรศัพท์ *</span
+                ><input
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="เช่น 0812345678"
+                  pattern="0[0-9]{8,9}"
+                  maxlength="10"
+                  title="กรอกเบอร์โทรศัพท์ 9–10 หลัก ขึ้นต้นด้วย 0 โดยไม่เว้นวรรค"
+                  required /></label
+              ><label class="field"
+                ><span>ช่วงอายุ *</span
+                ><select name="age_range" required>
+                  <option value="">เลือกช่วงอายุ</option>
+                  <option>ต่ำกว่า 18 ปี</option>
+                  <option>18–20 ปี</option>
+                  <option>21–23 ปี</option>
+                  <option>24–26 ปี</option>
+                  <option>27–30 ปี</option>
+                  <option>มากกว่า 30 ปี</option>
+                </select></label
+              ><label class="field"
+                ><span>เพศ *</span
+                ><select name="gender" required>
+                  <option value="">เลือกเพศ</option>
+                  <option>หญิง</option>
+                  <option>ชาย</option>
+                  <option>นอนไบนารี / หลากหลายทางเพศ</option>
+                  <option>ไม่ประสงค์ระบุ</option>
+                </select></label
+              ><label class="field"
+                ><span>สถานะอาชีพ *</span
+                ><select name="occupation" required>
+                  <option value="">เลือกสถานะอาชีพ</option>
+                  <option>นักศึกษา</option>
+                  <option>เริ่มทำงาน</option>
+                  <option>ทำงานแล้ว</option>
+                  <option>อื่น ๆ</option>
+                </select></label
+              ><label class="field"
+                ><span>ระดับการศึกษา *</span
+                ><select name="education" required>
+                  <option value="">เลือกระดับการศึกษา</option>
+                  <option>มัธยมศึกษา</option>
+                  <option>อาชีวศึกษา / ปวส.</option>
+                  <option>ปริญญาตรี</option>
+                  <option>สูงกว่าปริญญาตรี</option>
+                  <option>อื่น ๆ</option>
+                </select></label
+              >
+            </div>
+            <p class="data-link">
+              <a href="activity.html#your-data">HOW WE USE YOUR DATA</a>
+            </p>
+            <label class="consent"
+              ><input name="consent" type="checkbox" required /><span
+                >ฉันยินยอมให้ Zensation
+                เก็บข้อมูลที่กรอกเพื่อติดต่อเรื่องการรับรางวัล
+                ดำเนินกิจกรรมลุ้นรางวัล
+                และวิเคราะห์ข้อมูลผู้ร่วมกิจกรรมแบบภาพรวม
+                โดยไม่เผยแพร่ชื่อรายบุคคล *</span
+              ></label
+            ><button class="button submit-button" type="submit">
+              SUBMIT ENTRY
+            </button>
+            <p class="form-note">
+              กรุณาตรวจสอบเบอร์โทรศัพท์ก่อนส่ง
+              ทีมงานจะติดต่อผู้โชคดีผ่านหมายเลขนี้
+            </p>
+            <div
+              id="form-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></div>
+          </form>
+          <section
+            id="registration-success"
+            class="registration-success"
+            hidden
+            tabindex="-1"
+            aria-labelledby="success-title"
+          >
+            <div class="success-seal" aria-hidden="true">✓</div>
+            <span class="kicker">YOU’RE ON THE LIST</span>
+            <h2 id="success-title">Thank you.<br /><em>Stay confident.</em></h2>
+            <h3>รับข้อมูลเรียบร้อยแล้ว</h3>
+            <p>
+              ขอบคุณที่ร่วมกิจกรรมกับ Zensation<br />ทีมงานจะสุ่มรายชื่อภายหลัง
+              และติดต่อผู้โชคดี<br />ผ่านเบอร์โทรศัพท์ที่ลงทะเบียนไว้
+            </p>
+            <div class="success-next">
+              <a class="button button-pink" href="makeup.html"
+                >PLAY MAKEUP GAME</a
+              ><a class="text-link" href="index.html">EXPLORE PRODUCT</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <div class="footer-brand">ZENSATION</div>
+        <p>Confidence. No Compromises.</p>
+      </div>
+      <nav aria-label="ลิงก์ส่วนท้าย">
+        <a href="index.html#product">PRODUCT</a
+        ><a href="makeup.html">MAKEUP STUDIO</a><a href="index.html#faq">FAQ</a
+        ><a href="activity.html">ACTIVITY INFO</a
+        ><a href="activity.html#your-data">YOUR DATA</a
+        ><a href="index.html#shop">FIND US</a>
+      </nav>
+      <small>© 2026 ZENSATION · CONFIDENCE. NO COMPROMISES.</small>
+    </footer>
+  </body>
+</html>

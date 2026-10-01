@@ -1,0 +1,958 @@
+.makeup-page {
+  background: #fffaf8;
+}
+.studio {
+  padding: 48px clamp(20px, 4vw, 72px) 55px;
+}
+.studio-heading {
+  text-align: center;
+  margin: 0 auto 40px;
+}
+.studio-heading .kicker {
+  color: #b76183;
+}
+.studio-heading h1 {
+  font-size: clamp(54px, 6vw, 94px);
+  line-height: 1.04;
+  margin: 15px 0;
+}
+.studio-heading p {
+  font-size: 15px;
+  color: #698076;
+}
+.game-shell {
+  max-width: 1460px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(390px, 1.55fr) minmax(
+      245px,
+      0.95fr
+    );
+  border: 1px solid #e9cbd6;
+  box-shadow: 0 20px 65px #5c223318;
+}
+.studio-sidebar,
+.makeup-tray {
+  padding: 30px;
+  background: #fff5f8;
+}
+.side-label,
+.tray-heading span {
+  font:
+    700 11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.18em;
+  color: #b56082;
+}
+.studio-sidebar h2 {
+  font-size: clamp(36px, 3.1vw, 50px);
+  line-height: 1.05;
+  margin: 23px 0;
+}
+.studio-sidebar p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5c7669;
+}
+.product-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: white;
+  border: 1px solid #e5b6c9;
+  padding: 8px;
+  margin: 28px 0 15px;
+  color: var(--green-dark);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.product-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px #aa738636;
+}
+.product-button img {
+  width: 77px;
+  height: 90px;
+  object-fit: cover;
+  object-position: 75% center;
+}
+.product-button span {
+  display: grid;
+  gap: 5px;
+}
+.product-button small {
+  font:
+    700 9px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.1em;
+  color: #b65b80;
+}
+.product-button strong {
+  font-size: 15px;
+}
+.game-status {
+  min-height: 50px !important;
+  font-size: 12px !important;
+  color: #ac5779 !important;
+}
+.reset-button {
+  border: 0;
+  background: transparent;
+  color: #315d4c;
+  font-size: 13px;
+  text-decoration: underline;
+  padding: 8px 0;
+}
+.portrait-area {
+  background: #f8deea;
+  padding: 14px;
+  min-width: 0;
+}
+.portrait-top,
+.portrait-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #5f4450;
+  font:
+    700 11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.13em;
+  padding: 7px 10px 17px;
+}
+.portrait-bottom {
+  padding: 16px 10px 8px;
+}
+.portrait-frame {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+  aspect-ratio: 440/580;
+  overflow: hidden;
+  border: 7px solid white;
+  box-shadow: 0 7px 25px #7b4d6140;
+}
+.portrait-frame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#blemishes {
+  transition: opacity 0.7s;
+}
+#gel-flash {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 120px;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+}
+.gel-applied #gel-flash {
+  animation: flash 1s ease-out;
+}
+@keyframes flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+.makeup-tray {
+  background: #fdf5f4;
+  position: relative;
+}
+.tray-heading {
+  display: grid;
+  gap: 9px;
+  border-bottom: 1px solid #e9cbd6;
+  padding-bottom: 22px;
+}
+.tray-heading strong {
+  font:
+    600 23px "Playfair Display",
+    Georgia,
+    serif;
+  color: var(--green-dark);
+}
+.tray-locked {
+  margin: 16px 0;
+  padding: 12px;
+  background: #f3e4e6;
+  color: #916a76;
+  font-size: 12px;
+  text-align: center;
+}
+.makeup-tray[aria-disabled="true"] .makeup-group {
+  opacity: 0.45;
+}
+.makeup-tray[aria-disabled="true"] .swatches button {
+  pointer-events: none;
+}
+.makeup-group {
+  border-bottom: 1px solid #ecd9df;
+  padding: 18px 0;
+}
+.makeup-group h3 {
+  font:
+    700 12px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.12em;
+  margin: 0 0 15px;
+}
+.makeup-group h3 span {
+  font:
+    500 12px Prompt,
+    sans-serif;
+  letter-spacing: 0;
+  color: #8e7d7e;
+  margin-left: 6px;
+}
+.swatches {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.swatches button {
+  background: white;
+  border: 1px solid #ead5dd;
+  min-width: 50px;
+  padding: 7px 5px;
+  color: #36574b;
+  font:
+    600 10px "DM Sans",
+    sans-serif;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.swatches button.active {
+  border: 2px solid var(--green);
+  padding: 6px 4px;
+}
+.swatches i {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: block;
+  background: var(--swatch);
+  border: 1px solid #d0babe;
+}
+.game-disclaimer {
+  max-width: 1460px;
+  margin: 14px auto 0;
+  font-size: 11px;
+  color: #8a908c;
+}
+.makeup-page .site-header {
+  z-index: 5;
+}
+@media (max-width: 1050px) {
+  .game-shell {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .makeup-tray {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .tray-heading,
+  .tray-locked {
+    grid-column: 1/-1;
+  }
+  .makeup-group {
+    border: 0;
+  }
+}
+@media (max-width: 650px) {
+  .studio {
+    padding: 30px 14px;
+  }
+  .game-shell {
+    display: block;
+  }
+  .studio-sidebar {
+    padding: 24px;
+  }
+  .studio-sidebar h2 {
+    margin: 12px 0;
+  }
+  .product-button {
+    margin: 16px 0 5px;
+  }
+  .portrait-area {
+    padding: 8px;
+  }
+  .makeup-tray {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    gap: 0 13px;
+  }
+  .makeup-group {
+    padding: 13px 0;
+  }
+  .swatches button {
+    min-width: 48px;
+  }
+  .portrait-top,
+  .portrait-bottom {
+    font-size: 9px;
+  }
+  .makeup-page .site-header nav {
+    gap: 8px;
+    font-size: 8px;
+  }
+  .makeup-page .brand-name {
+    display: none;
+  }
+}
+
+/* Illustrated character and gentle expression transitions. */
+.portrait-frame {
+  aspect-ratio: 440/559;
+  background: #f9f4e4;
+}
+#character-body {
+  transform-origin: 510px 450px;
+  transition: transform 600ms ease-in-out;
+}
+#happy-face {
+  transition: opacity 420ms ease-in-out;
+}
+#face-art.is-happy #happy-face {
+  opacity: 1;
+}
+#face-art.is-happy #character-body {
+  transform: translateY(-2px) rotate(-0.3deg);
+}
+#lip-layer {
+  transition:
+    opacity 350ms ease,
+    fill 300ms ease;
+}
+#face-art.is-happy #lip-layer {
+  opacity: 0;
+}
+#blush-layer,
+#shadow-layer,
+#brows-layer {
+  transition: opacity 300ms ease;
+}
+.swatches button {
+  transition:
+    opacity 250ms ease,
+    background 250ms ease,
+    border-color 250ms ease;
+}
+.makeup-tray[aria-busy="true"] .swatches button {
+  opacity: 0.65;
+  cursor: wait;
+}
+@media (prefers-reduced-motion: reduce) {
+  #character-body,
+  #happy-face,
+  #lip-layer,
+  #blush-layer,
+  #shadow-layer,
+  #brows-layer {
+    transition: none;
+  }
+  #face-art.is-happy #character-body {
+    transform: none;
+  }
+  .gel-applied #gel-flash {
+    animation: none;
+  }
+}
+
+#happy-lip-layer {
+  transition: opacity 420ms ease;
+  opacity: 0;
+}
+#face-art.is-happy #happy-lip-layer {
+  opacity: var(--lip-opacity, 0);
+}
+
+.save-look-button {
+  display: block;
+  width: 100%;
+  margin: 18px 0 8px;
+  padding: 14px 18px;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fffaf8;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+.save-look-button:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+.save-look-button:hover:not(:disabled) {
+  background: var(--green-dark);
+}
+
+.product-button img {
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.game-steps {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 700px;
+  margin: 0 auto 25px;
+  padding: 0;
+  list-style: none;
+}
+.game-steps li {
+  flex: 1;
+  text-align: center;
+  border-bottom: 2px solid #e8d6dc;
+  padding: 12px 5px;
+  font:
+    600 11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.13em;
+  color: #8b7e83;
+}
+.game-steps b {
+  margin-right: 8px;
+  color: #b96b87;
+}
+.game-steps li[aria-current] {
+  border-color: #164b3c;
+  color: #164b3c;
+}
+.game-steps li[aria-current] b {
+  color: #164b3c;
+}
+@media (max-width: 650px) {
+  .portrait-area {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    box-shadow: 0 5px 14px #59394918;
+  }
+  .portrait-frame {
+    height: 42vh;
+    width: auto;
+    aspect-ratio: 440/559;
+  }
+  .portrait-top,
+  .portrait-bottom {
+    padding: 5px 10px;
+  }
+  .makeup-tray {
+    position: relative;
+    z-index: 1;
+  }
+  .game-steps {
+    margin-bottom: 18px;
+  }
+}
+
+.style-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+}
+.style-tabs button {
+  flex: 1;
+  padding: 12px 8px;
+  background: transparent;
+  border: 1px solid #d9bbc7;
+  color: #52695c;
+  font:
+    700 11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0.1em;
+}
+.style-tabs button[aria-selected="true"] {
+  background: #164b3c;
+  border-color: #164b3c;
+  color: white;
+}
+.style-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+.style-choices button {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  border: 1px solid #e5cfd8;
+  background: #fffaf8;
+  padding: 11px 3px;
+  color: #36574b;
+  font:
+    600 10px "DM Sans",
+    sans-serif;
+}
+.style-choices button span {
+  font:
+    24px Georgia,
+    serif;
+  color: #b66d88;
+}
+.style-choices button.active {
+  border: 2px solid #164b3c;
+  padding: 10px 2px;
+  background: #f0f5ee;
+}
+.style-choices button:disabled {
+  opacity: 0.5;
+}
+.makeup-tray [hidden] {
+  display: none !important;
+}
+.makeup-tray[aria-disabled="true"] .style-choices {
+  opacity: 0.55;
+}
+#clips-layer,
+#earrings-layer {
+  filter: drop-shadow(0px 1px 1px #4a263230);
+}
+@media (min-width: 1051px) {
+  .makeup-tray {
+    max-height: 850px;
+    overflow-y: auto;
+  }
+  .portrait-area {
+    align-self: start;
+    position: sticky;
+    top: 10px;
+  }
+  .game-shell {
+    align-items: start;
+  }
+  .studio-sidebar {
+    align-self: stretch;
+  }
+}
+@media (max-width: 1050px) {
+  .makeup-tray {
+    display: block;
+  }
+  .makeup-tray [role="tabpanel"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+  }
+}
+@media (max-width: 650px) {
+  .makeup-tray [role="tabpanel"] {
+    gap: 0 12px;
+  }
+  .style-choices {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Studio: shared brand styling and compact, usable controls. */
+.studio {
+  max-width: 1640px;
+  margin: auto;
+  padding: 36px var(--gutter) 55px;
+}
+.studio-heading {
+  text-align: left;
+  position: relative;
+  margin: 0 0 22px;
+}
+.studio-heading h1 {
+  font-size: clamp(36px, 4vw, 60px);
+  margin: 10px 0;
+}
+.studio-heading p {
+  font-size: 16px;
+  margin: 12px 0 0;
+}
+.studio-heading .kicker {
+  color: #9a506b;
+}
+.game-steps {
+  max-width: none;
+  justify-content: flex-start;
+  margin: 0 0 25px;
+}
+.game-steps li {
+  flex: 0 1 190px;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 0;
+}
+.game-shell {
+  grid-template-columns: minmax(210px, 0.85fr) minmax(300px, 1.35fr) minmax(
+      270px,
+      1fr
+    );
+  gap: 0;
+  border: 1px solid #dce2d8;
+  box-shadow: none;
+  background: #f5f3ec;
+}
+.studio-sidebar,
+.makeup-tray {
+  padding: 25px;
+  background: #fffcf9;
+}
+.studio-sidebar {
+  border-right: 1px solid #dce2d8;
+}
+.side-label,
+.tray-heading span {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #85516a;
+}
+.studio-sidebar h2 {
+  font-size: 36px;
+  line-height: 1.15;
+}
+.studio-sidebar p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+.product-button {
+  padding: 12px;
+  border: 1px solid #d8c7ce;
+  margin: 23px 0 16px;
+  gap: 13px;
+}
+.product-button img {
+  width: 52px;
+  height: 91px;
+}
+.product-button small {
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  color: #94536e;
+}
+.product-button strong {
+  font: 600 12px/1.5 var(--sans);
+}
+.product-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px #193f340d;
+}
+.portrait-area {
+  background: #f1e6e5;
+  padding: 18px;
+  position: sticky;
+  top: 104px;
+  align-self: start;
+}
+.portrait-frame {
+  border: 0;
+  box-shadow: none;
+  max-width: 450px;
+}
+.portrait-top,
+.portrait-bottom {
+  padding: 2px 0 15px;
+  font: 500 9px var(--sans);
+  letter-spacing: 0.11em;
+}
+.portrait-bottom {
+  padding: 15px 0 2px;
+}
+.makeup-tray {
+  border-left: 1px solid #dce2d8;
+  max-height: 740px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c4cfc4 transparent;
+}
+.tray-heading {
+  padding-bottom: 18px;
+  border-color: #dce2d8;
+}
+.tray-heading strong {
+  font-size: 22px;
+}
+.style-tabs button {
+  font-size: 12px;
+  font-weight: 500;
+  border-color: #cbd4c9;
+}
+.tray-locked {
+  font-size: 13px;
+  background: #f5e7ec;
+  color: #805365;
+}
+.makeup-group {
+  padding: 19px 0;
+  border-color: #e3e6df;
+}
+.makeup-group h3 {
+  font-size: 12px;
+  font-weight: 500;
+}
+.makeup-group h3 span {
+  font-size: 12px;
+  color: #65766b;
+}
+.swatches {
+  gap: 8px;
+}
+.swatches button {
+  min-width: 51px;
+  min-height: 66px;
+  border-color: #dbe0d7;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 3px;
+  background: #fff;
+}
+.swatches button:hover:not(:disabled) {
+  border-color: #7c9685;
+  background: #f5f7f1;
+}
+.swatches i {
+  width: 27px;
+  height: 27px;
+  border-color: #00000014;
+}
+.style-choices button {
+  font-size: 11px;
+  line-height: 1.5;
+  min-height: 64px;
+  border-color: #dbe0d7;
+  background: white;
+  border-radius: 3px;
+}
+.game-status {
+  font-size: 13px !important;
+  color: #86536a !important;
+  min-height: 60px !important;
+}
+.save-look-button {
+  font: 500 12px/1.7 var(--sans);
+  letter-spacing: 0.05em;
+  min-height: 49px;
+}
+.reset-button {
+  font: 500 12px var(--sans);
+  letter-spacing: 0.06em;
+  min-height: 44px;
+  text-underline-offset: 5px;
+}
+.game-disclaimer {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #647267;
+}
+.makeup-page .site-header {
+  z-index: 20;
+}
+@media (max-width: 1100px) {
+  .studio {
+    padding-inline: 24px;
+  }
+  .game-shell {
+    grid-template-columns: minmax(190px, 0.85fr) minmax(280px, 1.25fr) minmax(
+        245px,
+        1fr
+      );
+  }
+  .studio-sidebar,
+  .makeup-tray {
+    padding: 19px;
+  }
+  .studio-sidebar h2 {
+    font-size: 32px;
+  }
+  .makeup-tray {
+    display: block;
+  }
+  .makeup-tray [role="tabpanel"] {
+    display: block;
+  }
+  .swatches {
+    gap: 6px;
+  }
+}
+@media (max-width: 900px) {
+  .game-shell {
+    grid-template-columns: 1fr 1.3fr;
+  }
+  .studio-sidebar {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .portrait-area {
+    grid-column: 2;
+    grid-row: 1;
+    position: static;
+  }
+  .makeup-tray {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #dce2d8;
+    max-height: none;
+  }
+  .makeup-tray [role="tabpanel"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 30px;
+  }
+  .studio-heading h1 {
+    font-size: 48px;
+  }
+}
+@media (max-width: 600px) {
+  .studio {
+    padding: 26px 16px 40px;
+  }
+  .studio-heading {
+    margin-bottom: 15px;
+  }
+  .studio-heading h1 {
+    font-size: 37px;
+  }
+  .studio-heading p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .studio-heading .kicker {
+    font-size: 10px;
+  }
+  .game-steps li {
+    font-size: 10px;
+    padding: 10px 0;
+  }
+  .game-steps {
+    margin-bottom: 20px;
+  }
+  .game-shell {
+    display: flex;
+    flex-direction: column;
+  }
+  .studio-sidebar {
+    width: 100%;
+    padding: 19px;
+    border-right: 0;
+  }
+  .side-label,
+  .studio-sidebar h2,
+  .studio-sidebar > p:not(.game-status) {
+    display: none;
+  }
+  .product-button {
+    margin: 0 0 10px;
+    padding: 10px 15px;
+  }
+  .product-button img {
+    width: 40px;
+    height: 68px;
+  }
+  .product-button strong {
+    font-size: 14px;
+  }
+  .product-button small {
+    font-size: 10px;
+  }
+  .game-status {
+    min-height: 0 !important;
+    margin: 8px 0 !important;
+    font-size: 12px !important;
+  }
+  .save-look-button {
+    width: calc(65% - 10px);
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    vertical-align: middle;
+  }
+  .reset-button {
+    width: 30%;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+  .portrait-area {
+    width: 100%;
+    position: sticky;
+    top: 72px;
+    z-index: 4;
+    padding: 10px 16px;
+    box-shadow: 0 5px 15px #193f340d;
+  }
+  .portrait-frame {
+    height: min(39vh, 350px);
+    width: auto;
+    max-width: 100%;
+    margin: auto;
+    aspect-ratio: 440/559;
+  }
+  .portrait-top,
+  .portrait-bottom {
+    font-size: 8px;
+    padding: 0 0 7px;
+  }
+  .portrait-bottom {
+    padding: 7px 0 0;
+  }
+  .makeup-tray {
+    width: 100%;
+    padding: 22px 18px;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+  }
+  .makeup-tray [role="tabpanel"] {
+    gap: 0 18px;
+  }
+  .makeup-page .site-header nav {
+    gap: 8px;
+    font-size: 14px;
+  }
+  .makeup-page .brand-name {
+    display: inline;
+  }
+  .swatches button {
+    min-width: 48px;
+  }
+  .style-choices {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tray-heading strong {
+    font-size: 24px;
+  }
+  .tray-heading span {
+    font-size: 10px;
+  }
+  .style-tabs {
+    margin: 16px 0;
+  }
+  .style-tabs button {
+    font-size: 12px;
+    min-height: 44px;
+  }
+}
+@media (min-width: 901px) {
+  .makeup-tray {
+    grid-column: auto;
+  }
+  .portrait-area {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
