@@ -65,3 +65,15 @@ Deploy the `dist` directory to a static web host. It contains the complete front
 ## Assets
 
 Brand names, product photography and character artwork are included for this project. Their inclusion does not grant permission for unrelated reuse.
+
+### Vercel
+
+Import this repository with the root directory left at the repository root and
+Framework Preset set to **Other**. `vercel.json` sets the build command and output
+folder. Add these environment variables before deploying:
+
+- `SUPABASE_URL`: your Supabase project URL.
+- `SUPABASE_PUBLISHABLE_KEY`: your publishable key or legacy anon key.
+
+The build copies `dist/` into `build/` and injects these public client settings.
+Do not use a service-role or secret key. The source configuration stays empty.
