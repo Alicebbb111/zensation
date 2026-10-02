@@ -10,6 +10,16 @@
     "M529 165 Q550 154 573 166",
   ];
   let prepared = false;
+  let finished = false;
+  let lookBlob = null;
+  let resultUrl = null;
+  let generation = 0;
+  const pending = new Set();
+  const revisions = {};
+  const result = document.getElementById("look-result");
+  const shell = document.querySelector(".game-shell");
+  const finishButton = document.getElementById("finish-look");
+  const resultStatus = document.getElementById("result-status");
   let reacting = false;
   let saving = false;
   const saveButton = document.getElementById("save-look");
@@ -19,37 +29,26 @@
   function syncControls() {
     tray
       .querySelectorAll("button[data-part]")
-      .forEach((button) => (button.disabled = !prepared || reacting || saving));
+      .forEach((button) => (button.disabled = !prepared || saving));
     tray.setAttribute("aria-busy", String(reacting));
-    saveButton.disabled = reacting || saving;
+    saveButton.disabled = saving;
+    finishButton.disabled = !prepared || saving || pending.size > 0;
     document
       .querySelectorAll(".game-steps li")
       .forEach((item) => item.removeAttribute("aria-current"));
     document
       .getElementById(
-        saving ? "step-save" : prepared ? "step-makeup" : "step-prep",
+        finished ? "step-save" : prepared ? "step-makeup" : "step-prep",
       )
       .setAttribute("aria-current", "step");
   }
   function celebrate() {
-    reacting = true;
     syncControls();
-    svg.classList.add("is-happy");
-    status.textContent = "ชอบลุคนี้จัง ♡";
-    clearTimeout(reactionTimer);
-    reactionTimer = setTimeout(() => {
-      svg.classList.remove("is-happy");
-      reactionTimer = setTimeout(() => {
-        reacting = false;
-        syncControls();
-        status.textContent =
-          "แต่งต่อได้เลย ลองสีอื่นหรือบันทึกลุคนี้ไว้ก็ได้ ♡";
-      }, 550);
-    }, 700);
+    status.textContent = "เลือกสีหรือสไตล์ต่อได้เลย พร้อมแล้วกด FINISH MY LOOK";
   }
   const fashion = {
     hair: "original",
-    outfit: "original",
+    outfit: "tank",
     clip: "none",
     earrings: "none",
   };
@@ -59,6 +58,7 @@
     waves: "assets/character-waves.png",
   };
   const outfitAssets = {
+    tank: "assets/character-tank.png",
     original: "assets/character-neutral.png",
     blazer: "assets/character-blazer.png",
     satin: "assets/character-satin.png",
@@ -93,7 +93,17 @@
     }),
   );
   function reset() {
+    generation++;
     prepared = false;
+    finished = false;
+    result.hidden = true;
+    shell.hidden = false;
+    lookBlob = null;
+    if (resultUrl) URL.revokeObjectURL(resultUrl);
+    resultUrl = null;
+    document.getElementById("result-portrait").replaceChildren();
+    document.getElementById("tank-image").setAttribute("opacity", "1");
+    document.getElementById("hair-color-image").setAttribute("opacity", "0");
     reacting = false;
     clearTimeout(reactionTimer);
     svg.classList.remove("is-happy");
@@ -115,7 +125,7 @@
       .forEach((button) => button.classList.remove("active"));
     Object.assign(fashion, {
       hair: "original",
-      outfit: "original",
+      outfit: "tank",
       clip: "none",
       earrings: "none",
     });
@@ -128,6 +138,24 @@
     tray
       .querySelectorAll("[data-part]")
       .forEach((item) => item.setAttribute("aria-pressed", "false"));
+    document
+      .getElementById("hair-color-image")
+      .setAttribute("href", hairAssets.original);
+    document
+      .getElementById("hair-mask-image")
+      .setAttribute("href", hairAssets.original);
+    for (const [part, value] of Object.entries({
+      ...fashion,
+      hairColor: "original",
+    })) {
+      const choice = tray.querySelector(
+        `button[data-part="${part}"][data-value="${value}"]`,
+      );
+      if (choice) {
+        choice.classList.add("active");
+        choice.setAttribute("aria-pressed", "true");
+      }
+    }
     label.textContent = "BARE FACE / 00";
     status.textContent = "แตะ “APPLY ZENSATION” เพื่อเริ่มเล่น ✦";
     apply.disabled = false;
@@ -152,10 +180,10 @@
     blush: { pink: "#e7829d", peach: "#ed9c82", rose: "#c76e86" },
     shadow: { rose: "#c59ba9", peach: "#e6ae8a", mauve: "#9d86aa" },
     lip: {
-      pink: "#df7698",
-      coral: "#dc8374",
-      berry: "#a95270",
-      nude: "#bd7778",
+      pink: "#ee4e99",
+      coral: "#f0713e",
+      berry: "#8f234f",
+      nude: "#c58e78",
     },
     brows: { soft: "#71514e", defined: "#3e2b33", light: "#a78371" },
   };
@@ -171,17 +199,19 @@
     blue: "#8ca5c8",
   });
   Object.assign(colors.lip, {
-    red: "#bf4356",
-    rose: "#ba657a",
-    caramel: "#b47f65",
-    plum: "#884d77",
+    red: "#c51630",
+    rose: "#b95575",
+    caramel: "#975b32",
+    plum: "#622876",
   });
   tray.addEventListener("click", async (event) => {
     const button = event.target.closest("button[data-part]");
-    if (!button || !prepared || reacting || saving) return;
+    if (!button || !prepared || saving) return;
     const { part, value } = button.dataset;
     if (part === "hair" || part === "outfit") {
-      reacting = true;
+      const ticket = (revisions[part] = (revisions[part] || 0) + 1);
+      const epoch = generation;
+      pending.add(part);
       syncControls();
       status.textContent = "กำลังเปลี่ยนลุค…";
       try {
@@ -190,22 +220,52 @@
         ready.src = asset;
         await ready.decode();
         // A reset while loading must not restore an abandoned choice.
-        if (!prepared) return;
+        if (!prepared || epoch !== generation || revisions[part] !== ticket)
+          return;
         document
           .getElementById(part === "hair" ? "character-base" : "outfit-image")
           .setAttribute("href", asset);
         if (part === "outfit")
+          document.getElementById("outfit-image").setAttribute("opacity", "1");
+        if (part === "outfit")
           document
-            .getElementById("outfit-image")
-            .setAttribute("opacity", value === "original" ? "0" : "1");
+            .getElementById("tank-image")
+            .setAttribute("opacity", value === "tank" ? "1" : "0");
+        if (part === "hair") {
+          document
+            .getElementById("hair-color-image")
+            .setAttribute("href", asset);
+          document
+            .getElementById("hair-mask-image")
+            .setAttribute("href", asset);
+        }
         fashion[part] = value;
       } catch (_) {
         status.textContent = "โหลดลุคไม่สำเร็จ ลองเลือกอีกครั้ง";
         reacting = false;
         syncControls();
         return;
+      } finally {
+        if (revisions[part] === ticket) pending.delete(part);
+        syncControls();
       }
-      reacting = false;
+    } else if (part === "hairColor") {
+      const tint = {
+        espresso: [0.55, 0.35, 0.25],
+        copper: [1.7, 0.8, 0.35],
+        blonde: [2.2, 1.65, 0.9],
+        rose: [1.6, 0.75, 1.25],
+        blue: [0.6, 1.05, 1.6],
+        original: [1, 1, 1],
+      }[value];
+      ["R", "G", "B"].forEach((c, i) =>
+        document
+          .querySelector(`#hair-tint feFunc${c}`)
+          .setAttribute("slope", tint[i]),
+      );
+      document
+        .getElementById("hair-color-image")
+        .setAttribute("opacity", value === "original" ? "0" : "1");
     } else if (part === "clip" || part === "earrings") {
       document.getElementById(
         part === "clip" ? "clips-layer" : "earrings-layer",
@@ -234,13 +294,13 @@
       document
         .getElementById("lip-layer")
         .setAttribute("fill", colors.lip[value]);
-      document.getElementById("lip-layer").setAttribute("opacity", ".28");
+      document.getElementById("lip-layer").setAttribute("opacity", ".78");
       document
         .getElementById("happy-lip-layer")
         .setAttribute("fill", colors.lip[value]);
       document
         .getElementById("happy-lip-layer")
-        .style.setProperty("--lip-opacity", ".28");
+        .style.setProperty("--lip-opacity", ".78");
     } else if (part === "brows") {
       const brows = document.getElementById("brows-layer");
       brows.setAttribute("fill", colors.brows[value]);
@@ -252,11 +312,7 @@
     label.textContent = "YOUR LOOK / ✦";
     celebrate();
   });
-  saveButton.addEventListener("click", async () => {
-    if (reacting || saving) return;
-    saving = true;
-    syncControls();
-    saveButton.textContent = "SAVING…";
+  async function exportLook() {
     let sourceUrl;
     try {
       const snapshot = svg.cloneNode(true);
@@ -319,25 +375,80 @@
         canvas.toBlob(resolve, "image/png"),
       );
       if (!png) throw new Error("Export failed");
-      const downloadUrl = URL.createObjectURL(png);
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.download = `zensation-my-look-${Date.now()}.png`;
-      document.body.append(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
-      status.textContent =
-        "ส่งรูปให้ดาวน์โหลดแล้ว ดูได้ในรายการดาวน์โหลดของเบราว์เซอร์ ♡";
-    } catch (error) {
-      status.textContent = "ยังบันทึกรูปไม่ได้ กรุณาลองกดบันทึกอีกครั้ง";
+      return png;
     } finally {
       if (sourceUrl) URL.revokeObjectURL(sourceUrl);
+    }
+  }
+  function downloadLook() {
+    if (!lookBlob) return;
+    const url = URL.createObjectURL(lookBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "zensation-my-look.png";
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    resultStatus.textContent = "ส่งรูปไปยังรายการดาวน์โหลดแล้ว ♡";
+  }
+  finishButton.addEventListener("click", async () => {
+    if (!prepared || saving || pending.size) return;
+    saving = true;
+    syncControls();
+    finishButton.textContent = "CREATING YOUR LOOK…";
+    try {
+      lookBlob = await exportLook();
+      if (resultUrl) URL.revokeObjectURL(resultUrl);
+      resultUrl = URL.createObjectURL(lookBlob);
+      const preview = new Image();
+      preview.alt = "ลุคที่คุณแต่งเสร็จแล้ว";
+      preview.src = resultUrl;
+      await preview.decode();
+      document.getElementById("result-portrait").replaceChildren(preview);
+      finished = true;
+      shell.hidden = true;
+      result.hidden = false;
+      resultStatus.textContent = "";
+      document.getElementById("result-title").focus();
+      result.scrollIntoView({ block: "start", behavior: "instant" });
+    } catch (_) {
+      status.textContent =
+        "สร้างรูปไม่สำเร็จ ลองกด FINISH อีกครั้ง ลุคของคุณยังอยู่ครบ";
+    } finally {
       saving = false;
-      saveButton.textContent = "SAVE YOUR LOOK ↓";
+      finishButton.textContent = "FINISH MY LOOK →";
       syncControls();
     }
   });
-  document.getElementById("reset-look").addEventListener("click", reset);
-  syncControls();
+  saveButton.addEventListener("click", downloadLook);
+  document.getElementById("share-look").addEventListener("click", async () => {
+    if (!lookBlob) return;
+    const file = new File([lookBlob], "zensation-my-look.png", {
+      type: "image/png",
+    });
+    try {
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: "My Zensation look" });
+      } else {
+        downloadLook();
+        resultStatus.textContent =
+          "เบราว์เซอร์นี้ยังแชร์รูปโดยตรงไม่ได้ บันทึกรูปแล้วส่งให้เพื่อนได้เลย";
+      }
+    } catch (error) {
+      if (error.name !== "AbortError")
+        resultStatus.textContent =
+          "แชร์ไม่สำเร็จ กด SAVE YOUR LOOK เพื่อบันทึกรูปแทนได้";
+    }
+  });
+  document.getElementById("edit-look").addEventListener("click", () => {
+    finished = false;
+    result.hidden = true;
+    shell.hidden = false;
+    syncControls();
+    finishButton.focus();
+  });
+  document.getElementById("reset-look").addEventListener("click", () => {
+    reset();
+    apply.focus();
+  });
+  reset();
 })();

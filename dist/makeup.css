@@ -956,3 +956,77 @@
     grid-row: auto;
   }
 }
+
+/* Final-look flow and immediate palette feedback. */
+.game-shell[hidden],
+.look-result[hidden] {
+  display: none !important;
+}
+#lip-layer,
+#blush-layer,
+#shadow-layer,
+#brows-layer {
+  transition:
+    opacity 100ms ease,
+    fill 100ms ease;
+}
+#lip-layer {
+  mix-blend-mode: normal !important;
+}
+#character-body {
+  transition: none;
+}
+.look-result {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) 1fr;
+  gap: clamp(25px, 6vw, 90px);
+  padding: clamp(20px, 4vw, 60px);
+  background: #f5e9e9;
+  border: 1px solid #e1d4d3;
+  align-items: center;
+  scroll-margin-top: 100px;
+}
+.result-portrait img {
+  width: 100%;
+  max-height: 660px;
+  object-fit: contain;
+  display: block;
+}
+.result-copy {
+  max-width: 440px;
+}
+.result-copy h2 {
+  font-size: clamp(42px, 5vw, 72px);
+  margin: 18px 0;
+}
+.result-copy p {
+  line-height: 1.8;
+  color: #526b5e;
+}
+.result-copy .save-look-button {
+  width: 100%;
+  margin: 12px 0;
+}
+.result-secondary {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+.result-secondary .reset-button {
+  width: auto;
+}
+#finish-look {
+  width: 100%;
+  margin-top: 24px;
+}
+@media (max-width: 650px) {
+  .look-result {
+    grid-template-columns: 1fr;
+  }
+  .result-portrait img {
+    max-height: 55vh;
+  }
+  .result-copy {
+    max-width: none;
+  }
+}
