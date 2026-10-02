@@ -386,7 +386,9 @@
     const link = document.createElement("a");
     link.href = url;
     link.download = "zensation-my-look.png";
+    document.body.append(link);
     link.click();
+    link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 60000);
     resultStatus.textContent = "ส่งรูปไปยังรายการดาวน์โหลดแล้ว ♡";
   }
