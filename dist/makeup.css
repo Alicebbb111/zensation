@@ -1030,3 +1030,133 @@
     max-width: none;
   }
 }
+
+/* Quick, non-blocking expression feedback. */
+#character-body {
+  transition: transform 180ms ease-out;
+}
+#happy-face,
+#happy-lip-layer {
+  transition: opacity 160ms ease;
+}
+#face-art.is-happy #character-body {
+  transform: translateY(-1.5px) rotate(-0.2deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  #character-body,
+  #happy-face,
+  #happy-lip-layer {
+    transition: none;
+  }
+  #face-art.is-happy #character-body {
+    transform: none;
+  }
+}
+
+.character-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  margin: 0 0 24px;
+  background: #fffaf7;
+  border: 1px solid #dbe4da;
+}
+.character-picker h2 {
+  font:
+    28px "Playfair Display",
+    serif;
+  margin: 8px 0;
+}
+.character-picker p {
+  font-size: 13px;
+  color: #617368;
+}
+.character-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.character-options button {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  min-width: 76px;
+  padding: 13px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #164b3c;
+  cursor: pointer;
+}
+.character-options button[aria-pressed="true"] {
+  background: #f5e5e9;
+  border-color: #b96d89;
+}
+.character-options button:focus-visible {
+  outline: 2px solid #164b3c;
+  outline-offset: 3px;
+}
+.character-options small {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.character-swatch {
+  width: 38px;
+  height: 46px;
+  border-radius: 45% 45% 48% 48%;
+  background: var(--skin-swatch);
+  box-shadow: inset -5px -3px 0 #00000012;
+  border: 2px solid #ffffff;
+}
+@media (max-width: 760px) {
+  .character-picker {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+  }
+  .character-options {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+  .character-options button {
+    min-width: 0;
+    padding: 10px 2px;
+  }
+  .character-options strong {
+    font-size: 11px;
+  }
+  .character-swatch {
+    width: 30px;
+    height: 37px;
+  }
+}
+
+.character-picker[hidden] {
+  display: none !important;
+}
+
+.wardrobe-hint {
+  font-size: 12px;
+  color: #627469;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+.wardrobe-surprise {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #ac7489;
+  color: #164b3c;
+  background: #f6e5ec;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  margin: 12px 0 20px;
+}
+.style-choices button:disabled,
+.wardrobe-surprise:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
